@@ -1,0 +1,118 @@
+===== test_a_O0 (volatile, -O0) =====
+00000000000112c9 <main>:
+   112c9:	endbr64 
+   112cd:	push   rbp
+   112ce:	mov    rbp,rsp
+   112d1:	sub    rsp,0x10
+   112d5:	call   114ec <install_sigfpe_handler>
+   112da:	mov    DWORD PTR [rbp-0x8],0x64
+   112e1:	mov    eax,DWORD PTR [rbp-0x8]
+   112e4:	mov    ecx,DWORD PTR [rip+0x95a82]        # a6d6c <b>
+   112ea:	cdq    
+   112eb:	idiv   ecx
+   112ed:	mov    DWORD PTR [rbp-0x4],eax
+   112f0:	mov    eax,DWORD PTR [rbp-0x4]
+   112f3:	mov    esi,eax
+   112f5:	lea    rdi,[rip+0x1fd08]        # 31004 <_IO_stdin_used+0x4>
+   112fc:	mov    eax,0x0
+   11301:	call   11150 <printf@plt>
+   11306:	mov    eax,DWORD PTR [rip+0x95a60]        # a6d6c <b>
+   1130c:	test   eax,eax
+   1130e:	jne    1131e <main+0x55>
+   11310:	lea    rdi,[rip+0x1fd09]        # 31020 <_IO_stdin_used+0x20>
+   11317:	call   11110 <puts@plt>
+   1131c:	jmp    1132a <main+0x61>
+   1131e:	lea    rdi,[rip+0x1fd06]        # 3102b <_IO_stdin_used+0x2b>
+   11325:	call   11110 <puts@plt>
+   1132a:	mov    eax,0x0
+   1132f:	leave  
+   11330:	ret    
+
+
+===== test_a_O3 (volatile, -O3) =====
+0000000000011200 <main>:
+   11200:	endbr64 
+   11204:	sub    rsp,0x18
+   11208:	call   11480 <install_sigfpe_handler>
+   1120d:	mov    DWORD PTR [rsp+0xc],0x64
+   11215:	mov    eax,DWORD PTR [rsp+0xc]
+   11219:	lea    rsi,[rip+0x1cde4]        # 2e004 <_IO_stdin_used+0x4>
+   11220:	mov    ecx,DWORD PTR [rip+0x91e06]        # a302c <b>
+   11226:	mov    edi,0x1
+   1122b:	cdq    
+   1122c:	idiv   ecx
+   1122e:	mov    edx,eax
+   11230:	xor    eax,eax
+   11232:	call   111a0 <__printf_chk@plt>
+   11237:	mov    eax,DWORD PTR [rip+0x91def]        # a302c <b>
+   1123d:	test   eax,eax
+   1123f:	jne    11254 <main+0x54>
+   11241:	lea    rdi,[rip+0x1cdd8]        # 2e020 <_IO_stdin_used+0x20>
+   11248:	call   11110 <puts@plt>
+   1124d:	xor    eax,eax
+   1124f:	add    rsp,0x18
+   11253:	ret    
+   11254:	lea    rdi,[rip+0x1cdd0]        # 2e02b <_IO_stdin_used+0x2b>
+   1125b:	call   11110 <puts@plt>
+   11260:	jmp    1124d <main+0x4d>
+   11262:	nop    WORD PTR cs:[rax+rax*1+0x0]
+   1126c:	nop    DWORD PTR [rax+0x0]
+
+
+===== test_b_O0 (local, -O0) =====
+00000000000112c9 <main>:
+   112c9:	endbr64 
+   112cd:	push   rbp
+   112ce:	mov    rbp,rsp
+   112d1:	sub    rsp,0x10
+   112d5:	call   114ec <install_sigfpe_handler>
+   112da:	mov    DWORD PTR [rbp-0xc],0x64
+   112e1:	mov    eax,DWORD PTR [rip+0x95a85]        # a6d6c <bv>
+   112e7:	mov    DWORD PTR [rbp-0x8],eax
+   112ea:	mov    eax,DWORD PTR [rbp-0xc]
+   112ed:	cdq    
+   112ee:	idiv   DWORD PTR [rbp-0x8]
+   112f1:	mov    DWORD PTR [rbp-0x4],eax
+   112f4:	mov    eax,DWORD PTR [rbp-0x4]
+   112f7:	mov    esi,eax
+   112f9:	lea    rdi,[rip+0x1fd04]        # 31004 <_IO_stdin_used+0x4>
+   11300:	mov    eax,0x0
+   11305:	call   11150 <printf@plt>
+   1130a:	cmp    DWORD PTR [rbp-0x8],0x0
+   1130e:	jne    1131e <main+0x55>
+   11310:	lea    rdi,[rip+0x1fd09]        # 31020 <_IO_stdin_used+0x20>
+   11317:	call   11110 <puts@plt>
+   1131c:	jmp    1132a <main+0x61>
+   1131e:	lea    rdi,[rip+0x1fd06]        # 3102b <_IO_stdin_used+0x2b>
+   11325:	call   11110 <puts@plt>
+   1132a:	mov    eax,0x0
+   1132f:	leave  
+   11330:	ret    
+
+
+===== test_b_O3 (local, -O3) =====
+0000000000011200 <main>:
+   11200:	endbr64 
+   11204:	push   rbx
+   11205:	call   11460 <install_sigfpe_handler>
+   1120a:	mov    ebx,DWORD PTR [rip+0x91e1c]        # a302c <bv>
+   11210:	mov    eax,0x64
+   11215:	lea    rsi,[rip+0x1cde8]        # 2e004 <_IO_stdin_used+0x4>
+   1121c:	cdq    
+   1121d:	mov    edi,0x1
+   11222:	idiv   ebx
+   11224:	mov    edx,eax
+   11226:	xor    eax,eax
+   11228:	call   111a0 <__printf_chk@plt>
+   1122d:	test   ebx,ebx
+   1122f:	jne    11241 <main+0x41>
+   11231:	lea    rdi,[rip+0x1cde8]        # 2e020 <_IO_stdin_used+0x20>
+   11238:	call   11110 <puts@plt>
+   1123d:	xor    eax,eax
+   1123f:	pop    rbx
+   11240:	ret    
+   11241:	lea    rdi,[rip+0x1cde3]        # 2e02b <_IO_stdin_used+0x2b>
+   11248:	call   11110 <puts@plt>
+   1124d:	jmp    1123d <main+0x3d>
+   1124f:	nop
+

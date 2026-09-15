@@ -1,0 +1,112 @@
+===== test_a_clang_O0 =====
+00000000000111e0 <main>:
+   111e0:	push   rbp
+   111e1:	mov    rbp,rsp
+   111e4:	sub    rsp,0x10
+   111e8:	mov    DWORD PTR [rbp-0x4],0x0
+   111ef:	call   11260 <install_sigfpe_handler>
+   111f4:	mov    DWORD PTR [rbp-0x8],0x64
+   111fb:	mov    eax,DWORD PTR [rbp-0x8]
+   111fe:	mov    ecx,DWORD PTR [rip+0x9bbac]        # acdb0 <b>
+   11204:	cdq    
+   11205:	idiv   ecx
+   11207:	mov    DWORD PTR [rbp-0xc],eax
+   1120a:	mov    esi,DWORD PTR [rbp-0xc]
+   1120d:	lea    rdi,[rip+0x24df0]        # 36004 <_IO_stdin_used+0x4>
+   11214:	mov    al,0x0
+   11216:	call   11050 <printf@plt>
+   1121b:	mov    eax,DWORD PTR [rip+0x9bb8f]        # acdb0 <b>
+   11221:	cmp    eax,0x0
+   11224:	jne    1123d <main+0x5d>
+   1122a:	lea    rdi,[rip+0x24def]        # 36020 <_IO_stdin_used+0x20>
+   11231:	mov    al,0x0
+   11233:	call   11050 <printf@plt>
+   11238:	jmp    1124b <main+0x6b>
+   1123d:	lea    rdi,[rip+0x24de8]        # 3602c <_IO_stdin_used+0x2c>
+   11244:	mov    al,0x0
+   11246:	call   11050 <printf@plt>
+   1124b:	xor    eax,eax
+   1124d:	add    rsp,0x10
+   11251:	pop    rbp
+   11252:	ret    
+   11253:	nop    WORD PTR cs:[rax+rax*1+0x0]
+   1125d:	nop    DWORD PTR [rax]
+
+
+===== test_a_clang_O3 =====
+000000000000e1f0 <main>:
+    e1f0:	push   rax
+    e1f1:	call   e240 <install_sigfpe_handler>
+    e1f6:	mov    DWORD PTR [rsp+0x4],0x64
+    e1fe:	mov    eax,DWORD PTR [rsp+0x4]
+    e202:	cdq    
+    e203:	idiv   DWORD PTR [rip+0x8be83]        # 9a08c <b>
+    e209:	lea    rdi,[rip+0x16df4]        # 25004 <_IO_stdin_used+0x4>
+    e210:	mov    esi,eax
+    e212:	xor    eax,eax
+    e214:	call   e060 <printf@plt>
+    e219:	cmp    DWORD PTR [rip+0x8be6c],0x0        # 9a08c <b>
+    e220:	lea    rax,[rip+0x16e08]        # 2502f <_IO_stdin_used+0x2f>
+    e227:	lea    rdi,[rip+0x16df2]        # 25020 <_IO_stdin_used+0x20>
+    e22e:	cmove  rdi,rax
+    e232:	call   e030 <puts@plt>
+    e237:	xor    eax,eax
+    e239:	pop    rcx
+    e23a:	ret    
+    e23b:	nop    DWORD PTR [rax+rax*1+0x0]
+
+
+===== test_b_clang_O0 =====
+00000000000111e0 <main>:
+   111e0:	push   rbp
+   111e1:	mov    rbp,rsp
+   111e4:	sub    rsp,0x10
+   111e8:	mov    DWORD PTR [rbp-0x4],0x0
+   111ef:	call   11260 <install_sigfpe_handler>
+   111f4:	mov    DWORD PTR [rbp-0x8],0x64
+   111fb:	mov    eax,DWORD PTR [rip+0x9bbaf]        # acdb0 <bv>
+   11201:	mov    DWORD PTR [rbp-0xc],eax
+   11204:	mov    eax,DWORD PTR [rbp-0x8]
+   11207:	cdq    
+   11208:	idiv   DWORD PTR [rbp-0xc]
+   1120b:	mov    DWORD PTR [rbp-0x10],eax
+   1120e:	mov    esi,DWORD PTR [rbp-0x10]
+   11211:	lea    rdi,[rip+0x24dec]        # 36004 <_IO_stdin_used+0x4>
+   11218:	mov    al,0x0
+   1121a:	call   11050 <printf@plt>
+   1121f:	cmp    DWORD PTR [rbp-0xc],0x0
+   11223:	jne    1123c <main+0x5c>
+   11229:	lea    rdi,[rip+0x24df0]        # 36020 <_IO_stdin_used+0x20>
+   11230:	mov    al,0x0
+   11232:	call   11050 <printf@plt>
+   11237:	jmp    1124a <main+0x6a>
+   1123c:	lea    rdi,[rip+0x24de9]        # 3602c <_IO_stdin_used+0x2c>
+   11243:	mov    al,0x0
+   11245:	call   11050 <printf@plt>
+   1124a:	xor    eax,eax
+   1124c:	add    rsp,0x10
+   11250:	pop    rbp
+   11251:	ret    
+   11252:	nop    WORD PTR cs:[rax+rax*1+0x0]
+   1125c:	nop    DWORD PTR [rax+0x0]
+
+
+===== test_b_clang_O3 =====
+000000000000e1f0 <main>:
+    e1f0:	push   rax
+    e1f1:	call   e230 <install_sigfpe_handler>
+    e1f6:	mov    eax,0x64
+    e1fb:	xor    edx,edx
+    e1fd:	idiv   DWORD PTR [rip+0x8be89]        # 9a08c <bv>
+    e203:	lea    rdi,[rip+0x16dfa]        # 25004 <_IO_stdin_used+0x4>
+    e20a:	mov    esi,eax
+    e20c:	xor    eax,eax
+    e20e:	call   e060 <printf@plt>
+    e213:	lea    rdi,[rip+0x16e06]        # 25020 <_IO_stdin_used+0x20>
+    e21a:	call   e030 <puts@plt>
+    e21f:	xor    eax,eax
+    e221:	pop    rcx
+    e222:	ret    
+    e223:	nop    WORD PTR cs:[rax+rax*1+0x0]
+    e22d:	nop    DWORD PTR [rax]
+
