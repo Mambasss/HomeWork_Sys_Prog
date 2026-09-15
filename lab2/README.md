@@ -319,15 +319,12 @@ d) Компилятор видит if (b == 0) и понимает, что эт�
 ## Приложение
 
 ```bash
-# 1. Скачать Zydis amalgamated (single-file)
 wget https://github.com/zyantific/zydis/releases/download/v4.1.0/zydis-amalgamated.tar.gz
 tar -xzf zydis-amalgamated.tar.gz
 mkdir -p zydis && cp zydis-amalgamated/Zydis.c zydis-amalgamated/Zydis.h zydis/
 
-# 2. Собрать всё
 make clean && make all
 
-# 3. Прогон
 for b in test_a_O0 test_a_O3 test_b_O0 test_b_O3 \
          test_a_clang_O0 test_a_clang_O3 test_b_clang_O0 test_b_clang_O3; do
     echo "================ $b ================"
@@ -335,7 +332,6 @@ for b in test_a_O0 test_a_O3 test_b_O0 test_b_O3 \
     echo "exit: $?"
 done | tee run_results.txt
 
-# 4. Дизассемблирование ключевых бинарников
 {
   echo "===== test_b_clang_O3 (ветка вырезана) ====="
   objdump -d -M intel --no-show-raw-insn test_b_clang_O3 | sed -n '/<main>:/,/^$/p'
