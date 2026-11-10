@@ -76,7 +76,7 @@
 ## Сборка
 
 ```bash
-git clone <адрес-репозитория>
+git clone https://github.com/Mambasss/HomeWork_Sys_Prog.git
 cd minidocker
 chmod +x scripts/*.sh tests/*.sh
 make
